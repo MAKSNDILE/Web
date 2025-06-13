@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>IIE Study Hub - Welcome</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Design System for IIE Study Hub */
+        :root {
+            --primary-accent: #6f42c1; /* Deep Lavender/Violet */
+            --secondary-accent: #ffb347; /* Warm Orange */
+            --text-dark: #333d42;
+            --text-medium: #5a6268;
+            --text-light: #8e949a;
+            --background-light: #f5f7fa;
+            --white: #ffffff;
+            --border-color: #e0e6ed;
+            --shadow-light: rgba(0, 0, 0, 0.08);
+            --shadow-medium: rgba(0, 0, 0, 0.15);
+            --card-bg: #ffffff;
+            --button-gradient-start: #7a5acd; /* Lighter primary for button gradient */
+            --button-gradient-end: #6f42c1; /* Primary accent for button gradient end */
+            --button-hover-start: #6f42c1;
+            --button-hover-end: #5a349e; /* Darker primary for hover */
+        }
+
+        /* Reset & Base Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: linear-gradient(135deg, var(--background-light) 0%, var(--white) 100%);
+            color: var(--text-medium);
+            line-height: 1.7;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* --- Navigation Bar --- */
+        nav {
+            background-color: var(--primary-accent);
+            padding: 18px 0;
+            box-shadow: 0 4px 15px var(--shadow-light);
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin: 0 25px;
+        }
+
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 1.05em;
+            padding: 8px 15px;
+            border-radius: 25px;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        nav ul li a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: left 0.3s ease-out;
+            z-index: 0;
+        }
+
+        nav ul li a:hover::before {
+            left: 0;
+        }
+
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* --- Header Section (Hero) --- */
+        header {
+            background: linear-gradient(to right, var(--primary-accent), #8a5acd);
+            color: var(--white);
+            padding: 80px 20px 60px 20px; /* More padding for hero section */
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 1s ease-out;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: -50px;
+            right: -50px;
+            bottom: -50px;
+            background-image: radial-gradient(circle at 100% 150%, var(--primary-accent) 0%, transparent 100%),
+                              radial-gradient(circle at 0% -50%, var(--secondary-accent) 0%, transparent 100%);
+            opacity: 0.1;
+            transform: rotate(15deg);
+            z-index: 0;
+        }
+
+        header .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 3.8rem; /* Larger hero title */
+            margin-bottom: 20px;
+            animation: slideInLeft 1s ease-out;
+            line-height: 1.2;
+        }
+
+        header p {
+            font-size: 1.45rem; /* Larger sub-text */
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 30px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 25px; /* Space between buttons */
+            animation: fadeInUp 1s ease-out forwards;
+            animation-delay: 0.5s;
+            opacity: 0;
+        }
+
+        /* Hero buttons (different from nav buttons) */
+        .cta-button {
+            display: inline-block;
+            padding: 15px 35px;
+            border-radius: 30px; /* Pill shape */
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.15rem;
+            letter-spacing: 0.5px;
+            transition: transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .cta-button.primary {
+            background: linear-gradient(to right, var(--button-gradient-start), var(--button-gradient-end));
+            color: var(--white);
+        }
+
+        .cta-button.primary::before { /* Hover effect */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.2);
+            z-index: -1;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease-out;
+        }
+        .cta-button.primary:hover::before {
+            transform: scaleX(1);
+        }
+
+
+        .cta-button.secondary {
+            background-color: var(--white);
+            color: var(--primary-accent);
+            border: 2px solid var(--primary-accent);
+        }
+        .cta-button.secondary:hover {
+            background-color: var(--primary-accent);
+            color: var(--white);
+            border-color: var(--primary-accent);
+        }
+
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* --- Main Content Area & Section Headers --- */
+        main {
+            flex-grow: 1;
+            padding: 50px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section {
+            width: 100%;
+            margin-bottom: 60px; /* More space between sections */
+            text-align: center;
+        }
+
+        section:last-of-type {
+            margin-bottom: 20px; /* Less margin for the last section before footer */
+        }
+
+        section h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.8rem;
+            color: var(--primary-accent);
+            margin-bottom: 20px; /* More space below heading */
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 10px;
+            animation: fadeInUp 0.8s ease-out forwards;
+            animation-delay: 0.1s;
+            opacity: 0;
+        }
+
+        section h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: var(--secondary-accent);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        section p {
+            font-size: 1.15rem;
+            color: var(--text-medium);
+            margin-bottom: 30px; /* More space below introductory paragraph */
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 0.8s ease-out forwards;
+            animation-delay: 0.2s;
+            opacity: 0;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- Key Features Grid --- */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            width: 100%;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            box-shadow: 0 8px 25px var(--shadow-light);
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            border: 2px solid transparent;
+            animation: fadeInUpCard 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        /* Staggered animation for feature cards */
+        .features-grid .feature-card:nth-child(1) { animation-delay: 0.3s; }
+        .features-grid .feature-card:nth-child(2) { animation-delay: 0.4s; }
+        .features-grid .feature-card:nth-child(3) { animation-delay: 0.5s; }
+        .features-grid .feature-card:nth-child(4) { animation-delay: 0.6s; }
+
+        @keyframes fadeInUpCard {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            border-color: var(--secondary-accent);
+        }
+
+        .feature-icon {
+            font-size: 4em; /* Larger icon */
+            color: var(--primary-accent);
+            margin-bottom: 20px;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .feature-card:hover .feature-icon {
+            color: var(--secondary-accent);
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .feature-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5em;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .feature-description {
+            font-size: 1.05em;
+            color: var(--text-medium);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .feature-link {
+            display: inline-block;
+            padding: 10px 25px;
+            background: linear-gradient(to right, var(--button-gradient-start), var(--button-gradient-end));
+            color: var(--white);
+            border: none;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95em;
+            transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(111, 66, 193, 0.2);
+        }
+
+        .feature-link:hover {
+            background: linear-gradient(to right, var(--button-hover-start), var(--button-hover-end));
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(111, 66, 193, 0.3);
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: var(--text-dark);
+            color: rgba(255, 255, 255, 0.7);
+            text-align: center;
+            padding: 25px 20px;
+            font-size: 0.95rem;
+            margin-top: auto;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 900px) {
+            header h1 {
+                font-size: 3.2rem;
+            }
+            header p {
+                font-size: 1.25rem;
+            }
+            .cta-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .cta-button {
+                width: 80%;
+                max-width: 300px;
+            }
+            section h2 {
+                font-size: 2.2rem;
+            }
+            section p {
+                font-size: 1.05rem;
+            }
+            .features-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 25px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 60px 15px 40px 15px;
+            }
+            header h1 {
+                font-size: 2.8rem;
+            }
+            header p {
+                font-size: 1.15rem;
+            }
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+            nav ul li {
+                margin: 0;
+            }
+            main {
+                padding: 30px 15px;
+            }
+            section h2 {
+                font-size: 2rem;
+            }
+            section p {
+                font-size: 1rem;
+            }
+            .features-grid {
+                grid-template-columns: 1fr; /* Stack features on smaller mobiles */
+                max-width: 350px;
+                margin: 0 auto;
+            }
+            .feature-card {
+                padding: 25px;
+                border-radius: 12px;
+            }
+            .feature-icon {
+                font-size: 3.5em;
+            }
+            .feature-title {
+                font-size: 1.3em;
+            }
+            .feature-description {
+                font-size: 0.95em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+            header p {
+                font-size: 1rem;
+            }
+            .cta-button {
+                font-size: 1rem;
+                padding: 12px 25px;
+            }
+            section h2 {
+                font-size: 1.8rem;
+            }
+            section p {
+                font-size: 0.95rem;
+            }
+            .feature-icon {
+                font-size: 3em;
+            }
+            .feature-title {
+                font-size: 1.1em;
+            }
+            .feature-description {
+                font-size: 0.85em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="hero-content">
+            <h1>Welcome to the IIE Study Hub</h1>
+            <p>Unlock your learning potential with our comprehensive platform designed to support your academic journey.</p>
+            <div class="cta-buttons">
+                <a href="signup.html" class="cta-button primary">Get Started Now</a>
+                <a href="about.html" class="cta-button secondary">Learn More About Us</a>
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li><a href="forums.html">Forums</a></li>
+                <li><a href="collaboration.html">Collaboration</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Key Features for Your Success</h2>
+            <p>Discover the core functionalities that make IIE Study Hub your ultimate partner in academic achievement and collaborative learning.</p>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-book-reader feature-icon"></i>
+                    <h3 class="feature-title">Study Resources</h3>
+                    <p class="feature-description">Access a wide range of educational materials, from textbooks to lecture notes and past papers, all in one convenient place.</p>
+                    <a href="resources.html" class="feature-link">Explore Resources</a>
+                </div>
+
+                <div class="feature-card">
+                    <i class="fas fa-comments feature-icon"></i>
+                    <h3 class="feature-title">Discussion Forums</h3>
+                    <p class="feature-description">Connect with peers and educators, ask questions, share insights, and engage in meaningful academic discussions.</p>
+                    <a href="forums.html" class="feature-link">Join the Discussion</a>
+                </div>
+
+                <div class="feature-card">
+                    <i class="fas fa-users-gear feature-icon"></i>
+                    <h3 class="feature-title">Collaboration Tools</h3>
+                    <p class="feature-description">Work together on projects seamlessly with integrated shared documents, video conferencing, and upcoming project management features.</p>
+                    <a href="collaboration.html" class="feature-link">Start Collaborating</a>
+                </div>
+
+                <div class="feature-card">
+                    <i class="fas fa-clipboard-list feature-icon"></i>
+                    <h3 class="feature-title">Assignment Tracking</h3>
+                    <p class="feature-description">Stay effortlessly on top of your deadlines with our intuitive assignment tracking system, ensuring you never miss a submission.</p>
+                    <a href="#" class="feature-link">Track Assignments</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        &copy; 2025 IIE Study Hub. All rights reserved.
+    </footer>
+</body>
+</html>
